@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 def usage():
     import sys
     print """
@@ -87,8 +86,7 @@ def error(msg):
 
 
 def parseArgs(argv):
-    argnames = ('INFILE','OUTPATH','NDIMS','MINS','MAXS','BINSIZE','BORDERSIZE')  
-    #argnames=('infilepath','outstem','nDims','mins','maxs','binSize','buffs')
+    argnames = ('INFILE','OUTPATH','NDIMS','MINS','MAXS','BINSIZE','BORDERSIZE')
     for i,a in enumerate(argv):
         if i == 2:
             try:
@@ -151,12 +149,11 @@ def doBin(infilepath,outstem,nDims,mins,maxs,binSize,buffs):
         for id in range(nDims):
             inBins.append(np.where((vec[id] >= lowers[id]) & (vec[id] < uppers[id]))[0])
     
-        # For every bin that the grid cell is in. Similar trick to what we used 
+        # For every bin that the grid cell is in. Similar itertool trick to what we used 
         # for file opening.
         argStr = ','.join( [ 'inBins['+str(i)+']' for i in range(nDims) ] )
         for thisBin in eval('itertools.product('+argStr+')'):
 
-            # Write the record to the appropriate file.
             # Returns file name for this record.
             thisfPath = fPath[gridCoords.index(thisBin)] 
             
@@ -181,7 +178,6 @@ if __name__ == '__main__':
 
     import sys
     
-    # If there are too few or too many arguments then display the usage.
     if len(sys.argv) != 8:
         usage()
 
