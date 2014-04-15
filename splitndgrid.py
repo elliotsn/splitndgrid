@@ -129,7 +129,7 @@ def doBin(infilepath,outstem,nDims,mins,maxs,binSize,buffs):
     shapearg = ','.join( [ 'range('+str(len(lowers[i]))+')' for i in range(nDims) ] )
     fPath,gridCoords = [],[] # Lists of file paths and objects
     for thisBin in eval('itertools.product('+shapearg+')'):
-        fPath.append(outstem+'_'.join([ str(thisBin[i]) for i in range(len(thisBin)) ])+'.txt')
+        fPath.append(outstem+'_'.join([ str(thisBin[i]+1) for i in range(len(thisBin)) ])+'.txt')
         gridCoords.append(thisBin)
     
     openFileList,fObj = [],[]
